@@ -21,19 +21,20 @@ phases:
 #      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
   build:
     commands:
-#      - mvn test     
+      - echo Build started 'date'     
       - mvn verify sonar:sonar -Dsonar.login=$LOGIN -Dsonar.host.url=$HOST -Dsonar.projectKey=$Project -Dsonar.organization=$Organization
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=$Project >result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = "ERROR" ] ; then exit 1 ;fi
+      - gradle build
   post_build:
     commands:
       - echo $(basename ./build/libs/*.war)
       - pwd
 artifacts:
   files:
-    - 'target/FinalCaseStudy.war'
+    - 'build/libs/*.war'
     - 'appspec.yml'
     - 'scripts/before_install.sh'
     - 'scripts/after_install.sh'    

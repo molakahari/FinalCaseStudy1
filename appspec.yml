@@ -2,8 +2,8 @@
 version: 0.0
 os: linux
 files:
-  - source: target/FinalCaseStudy.war
-    destination: /apache-tomcat-8.5.82/webapps
+  - source: build/libs/FinalCaseStudy-0.0.1-SNAPSHOT.war
+    destination: /apache-tomcat-9.0.68/webapps
 hooks:
   BeforeInstall:
     - location: scripts/before_install.sh

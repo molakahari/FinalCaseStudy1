@@ -1,2 +1,2 @@
 #!/bin/bash
-/apache-tomcat-8.5.82/bin/catalina.sh start
+/apache-tomcat-9.0.68/bin/catalina.sh start
